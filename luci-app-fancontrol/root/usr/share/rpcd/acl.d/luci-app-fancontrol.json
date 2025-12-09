@@ -1,0 +1,20 @@
+{
+	"luci-app-fancontrol": {
+		"description": "Fan General Control",
+		"read": {
+			"uci": [
+				"fancontrol"
+			],
+			"file": {
+				"/sys/devices/virtual/thermal/*/*": ["read"],
+				"/sys/class/hwmon/hwmon*/pwm*": ["read"],
+				"/sys/class/hwmon/hwmon*/fan*_input": ["read"]
+			}
+		},
+		"write": {
+			"uci": [
+				"fancontrol"
+			]
+		}
+	}
+}

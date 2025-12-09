@@ -1,0 +1,97 @@
+#!/bin/sh /etc/rc.common
+
+# ==================== OpenWrt init脚本配置 ====================
+# 启动优先级：99（较晚启动，确保系统服务已就绪）
+START=99
+# 停止优先级：01（较早停止）
+STOP=01
+# 使用procd进程管理器
+USE_PROCD=1
+
+# 服务名称和程序路径
+NAME=fancontrol
+PROG=/usr/bin/$NAME
+
+# ==================== 服务启动函数 ====================
+# 配置并启动风扇控制服务
+start_service() {
+    # 加载配置文件并遍历配置段
+    config_load "$NAME"
+    config_foreach start_instance settings
+}
+
+# 启动单个服务实例
+start_instance() {
+    local cfg="$1"
+    local enable thermal_file fan_pwm_file fan_speed_file target_temp
+    local start_speed max_speed temp_div
+
+    # 检查是否启用服务
+    config_get_bool enable "$cfg" enable 1
+    [ "$enable" -eq 1 ] || {
+        echo "Instance \"$NAME\" disabled.";
+        return 1;
+    }
+
+    # 从配置文件中读取参数
+    config_get thermal_file "$cfg" thermal_file
+    config_get fan_pwm_file "$cfg" fan_pwm_file
+    config_get fan_speed_file "$cfg" fan_speed_file
+    config_get target_temp "$cfg" target_temp
+    config_get start_speed "$cfg" start_speed
+    config_get max_speed "$cfg" max_speed
+    config_get temp_div "$cfg" temp_div
+
+    # 使用procd启动服务实例
+    procd_open_instance
+    # 设置主命令
+    procd_set_param command $PROG
+    # 根据配置添加命令行参数（仅当参数非空时）
+    [ -n "$thermal_file" ] && procd_append_param command -T "$thermal_file"
+    [ -n "$fan_pwm_file" ] && procd_append_param command -F "$fan_pwm_file"
+    [ -n "$fan_speed_file" ] && procd_append_param command -S "$fan_speed_file"
+    [ -n "$target_temp" ] && procd_append_param command -t "$target_temp"
+    [ -n "$start_speed" ] && procd_append_param command -s "$start_speed"
+    [ -n "$max_speed" ] && procd_append_param command -m "$max_speed"
+    [ -n "$temp_div" ] && procd_append_param command -d "$temp_div"
+    # 设置自动重启（进程异常退出时自动重启）
+    procd_set_param respawn
+    # 关闭服务实例配置
+    procd_close_instance
+}
+
+# ==================== 标准服务函数 ====================
+# 启动服务（调用start_service）
+start() {
+    start_service
+}
+
+# 停止服务（使用procd终止进程）
+stop() {
+    # 停止风扇（设置PWM为0）
+    local fan_pwm_file
+    config_load "$NAME"
+    config_foreach stop_instance settings
+    
+    # 终止进程（如果服务正在运行）
+    procd_kill_instance 2>/dev/null || true
+}
+
+# 停止单个服务实例
+stop_instance() {
+    local cfg="$1"
+    local fan_pwm_file
+    
+    config_get fan_pwm_file "$cfg" fan_pwm_file "/sys/class/hwmon/hwmon7/pwm1"
+    echo "0" > "$fan_pwm_file" 2>/dev/null || true
+}
+
+# 重新加载配置
+reload() {
+    procd_reload_instance
+}
+
+# 配置重载触发器
+service_triggers() {
+    procd_add_reload_trigger "fancontrol"
+}

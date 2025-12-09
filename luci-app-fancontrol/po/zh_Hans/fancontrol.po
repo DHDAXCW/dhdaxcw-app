@@ -1,0 +1,110 @@
+msgid "Fan General Control"
+msgstr "风扇控制"
+
+msgid "Enable"
+msgstr "启用"
+
+msgid "Enable fan control"
+msgstr "启用风扇控制"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Thermal File"
+msgstr "温度虚拟文件"
+
+msgid "Path to the temperature sensor file"
+msgstr "温度传感器文件路径"
+
+msgid "Current temperature:"
+msgstr "当前温度："
+
+msgid "Error reading temperature or invalid temp_div"
+msgstr "读取温度失败或温度系数无效"
+
+msgid "Fan PWM File"
+msgstr "风扇控制虚拟文件"
+
+msgid "Path to the fan PWM control file"
+msgstr "风扇PWM控制文件路径"
+
+msgid "Current PWM:"
+msgstr "当前PWM："
+
+msgid "Error reading fan PWM file"
+msgstr "读取风扇PWM文件失败"
+
+msgid "Fan Speed File"
+msgstr "风扇速度虚拟文件"
+
+msgid "Path to the fan speed reading file (e.g., /sys/class/hwmon/hwmon7/fan1_input)"
+msgstr "风扇速度读取文件路径（例如：/sys/class/hwmon/hwmon7/fan1_input）"
+
+msgid "Current speed:"
+msgstr "当前速度："
+
+msgid "Error reading fan speed file"
+msgstr "读取风扇速度文件失败"
+
+msgid "Temperature coefficient"
+msgstr "温度系数"
+
+msgid "The temperature coefficient defaults to 1000. Used to convert raw temperature reading to Celsius."
+msgstr "温度系数默认为1000，用于将原始温度读数转换为摄氏度。"
+
+msgid "Initial Speed"
+msgstr "启动初始速度"
+
+msgid "Please enter the initial speed for fan startup (0-255)."
+msgstr "请输入风扇启动的初始速度 (0-255)。"
+
+msgid "Max Speed"
+msgstr "最大速度"
+
+msgid "Please enter maximum fan speed (0-255)."
+msgstr "请输入风扇最大速度 (0-255)。"
+
+msgid "Target Temperature"
+msgstr "目标温度"
+
+msgid "Please enter the target temperature for PID control in Celsius."
+msgstr "请输入PID控制的目标温度（摄氏度）。"
+
+msgid "PID Kp"
+msgstr "PID 比例系数"
+
+msgid "Proportional gain for PID control. Higher values make the system respond faster but may cause overshoot."
+msgstr "PID控制的比例增益系数。值越大系统响应越快，但可能导致超调。"
+
+msgid "PID Ki"
+msgstr "PID 积分系数"
+
+msgid "Integral gain for PID control. Helps eliminate steady-state error but may cause oscillation."
+msgstr "PID控制的积分增益系数。有助于消除稳态误差，但可能导致振荡。"
+
+msgid "PID Kd"
+msgstr "PID 微分系数"
+
+msgid "Derivative gain for PID control. Dampens the system response and reduces overshoot."
+msgstr "PID控制的微分增益系数。抑制系统响应，减少超调。"
+
+msgid "Log Interval"
+msgstr "记录间隔"
+
+msgid "Temperature logging interval in seconds (default: 10)."
+msgstr "温度记录间隔（秒，默认：10）。"
+
+msgid "PID Interval"
+msgstr "PID 计算周期"
+
+msgid "PID calculation interval in seconds (default: 5)."
+msgstr "PID 计算间隔（秒，默认：5）。"
+
+msgid "Trend"
+msgstr "趋势"
+
+msgid "Temperature Trend (Last 1 Hour)"
+msgstr "温度趋势（最近1小时）"
+
+msgid "No temperature data available"
+msgstr "暂无温度数据"

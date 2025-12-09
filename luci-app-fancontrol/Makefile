@@ -1,0 +1,20 @@
+#
+# Copyright (C) 2008-2014 The LuCI Team <luci@lists.subsignal.org>
+#
+# This is free software, licensed under the Apache License, Version 2.0 .
+#
+
+include $(TOPDIR)/rules.mk
+
+# 包信息
+PKG_NAME:=luci-app-fancontrol
+PKG_VERSION:=3.0
+PKG_RELEASE:=5
+
+# LuCI应用信息
+LUCI_TITLE:=LuCI support for Fan Controller
+LUCI_DEPENDS:=+luci-base +fancontrol
+LUCI_PKGARCH:=all
+
+include $(TOPDIR)/feeds/luci/luci.mk
+# call BuildPackage - OpenWrt buildroot signature
