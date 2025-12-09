@@ -22,8 +22,8 @@
  * 存储风扇控制的各种参数，可通过命令行参数修改
  */
 char thermal_file[MAX_LENGTH] = "/sys/devices/virtual/thermal/thermal_zone0/temp";      // 温度传感器文件路径 (-T)
-char fan_pwm_file[MAX_LENGTH] = "/sys/class/hwmon/hwmon7/pwm1";                         // 风扇PWM控制文件路径 (-F)
-char fan_speed_file[MAX_LENGTH] = "/sys/class/hwmon/hwmon7/fan1_input";                 // 风扇速度读取文件路径 (-S)
+char fan_pwm_file[MAX_LENGTH] = "/sys/class/hwmon/hwmon9/pwm1";                         // 风扇PWM控制文件路径 (-F)
+char fan_speed_file[MAX_LENGTH] = "/sys/class/hwmon/hwmon9/fan1_input";                 // 风扇速度读取文件路径 (-S)
 
 int start_speed = 35;   // 风扇启动初始速度 (-s)
 int target_temp = 55;   // PID控制的目标温度 (-t)

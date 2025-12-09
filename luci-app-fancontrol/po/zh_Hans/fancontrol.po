@@ -37,8 +37,8 @@ msgstr "读取风扇PWM文件失败"
 msgid "Fan Speed File"
 msgstr "风扇速度虚拟文件"
 
-msgid "Path to the fan speed reading file (e.g., /sys/class/hwmon/hwmon7/fan1_input)"
-msgstr "风扇速度读取文件路径（例如：/sys/class/hwmon/hwmon7/fan1_input）"
+msgid "Path to the fan speed reading file (e.g., /sys/class/hwmon/hwmon9/fan1_input)"
+msgstr "风扇速度读取文件路径（例如：/sys/class/hwmon/hwmon9/fan1_input）"
 
 msgid "Current speed:"
 msgstr "当前速度："

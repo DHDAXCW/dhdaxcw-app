@@ -82,7 +82,7 @@ stop_instance() {
     local cfg="$1"
     local fan_pwm_file
     
-    config_get fan_pwm_file "$cfg" fan_pwm_file "/sys/class/hwmon/hwmon7/pwm1"
+    config_get fan_pwm_file "$cfg" fan_pwm_file "/sys/class/hwmon/hwmon9/pwm1"
     echo "0" > "$fan_pwm_file" 2>/dev/null || true
 }
 
