@@ -1,3 +1,0 @@
-config cpufreq
-#	option governor 'ondemand'
-#	option speed '1000000'

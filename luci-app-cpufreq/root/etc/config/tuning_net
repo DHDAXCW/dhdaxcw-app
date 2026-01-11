@@ -1,3 +1,0 @@
-config hw_acct
-	option wan_acct '1'
-	option hw_pppoe '1'
